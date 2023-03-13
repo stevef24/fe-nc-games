@@ -1,0 +1,54 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { FaComment, FaThumbsUp } from "react-icons/fa";
+
+const SingleReviewCard = ({ review }) => {
+	const {
+		title,
+		category,
+		review_img_url,
+		votes,
+		designer,
+		comment_count,
+		review_id,
+	} = review;
+	return (
+		<div className="mb-4 shadow-xl hover:border card lg:card-side bg-base-100 lg:h-60 hover:border-primary">
+			<figure className="h-full">
+				<img
+					src={review_img_url}
+					alt="review"
+					className="lg:h-full lg:w-60 object-fit"
+				/>
+			</figure>
+			<div className="justify-around card-body">
+				<h2 className="mb-1 h-1/3 card-title">{title}</h2>
+				<p className="font-bold text text-primary">
+					{designer}{" "}
+					<span className="ml-4 badge badge-accent badge-outline">
+						{category}
+					</span>
+				</p>
+				<div className="flex flex-col card-actions">
+					<div className="flex flex-row items-center justify-center gap-2 mb-2">
+						<div className="badge">
+							<FaComment size={20} className="p-1 mr-1" />
+							{comment_count}
+						</div>
+						<div className="badge">
+							<FaThumbsUp size={20} className="p-1 mr-1" />
+							{votes}
+						</div>
+					</div>
+					<div className="justify-end card-actions">
+						<NavLink to={`/review/:${review_id}`} className="btn btn-primary">
+							READ MORE
+						</NavLink>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default SingleReviewCard;
