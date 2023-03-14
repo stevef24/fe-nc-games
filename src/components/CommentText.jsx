@@ -2,13 +2,16 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { fetchComments } from "../Utils/fetchData";
 import { FaThumbsUp } from "react-icons/fa";
+import Spinner from "../components/Spinner";
 
 const CommentText = ({ review }) => {
 	const [comments, setComments] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		fetchComments(review).then((data) => {
 			setComments(data);
+			setIsLoading(false);
 		});
 	}, [review]);
 
@@ -16,6 +19,8 @@ const CommentText = ({ review }) => {
 		<main>
 			{Object.keys(comments).includes("msg") ? (
 				<h1 className="text text-normal">No comments available</h1>
+			) : isLoading ? (
+				<Spinner isLoading={isLoading} />
 			) : (
 				comments.map((comment) => (
 					<section
