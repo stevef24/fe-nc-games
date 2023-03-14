@@ -24,7 +24,7 @@ const SingleReviewCard = ({ review }) => {
 			<div className="justify-around card-body">
 				<h2 className="mb-1 h-1/3 card-title">{title}</h2>
 				<p className="font-bold text text-primary">
-					{designer}{" "}
+					{designer}
 					<span className="ml-4 badge badge-accent badge-outline">
 						{category}
 					</span>
@@ -41,7 +41,7 @@ const SingleReviewCard = ({ review }) => {
 						</div>
 					</div>
 					<div className="justify-end card-actions">
-						<NavLink to={`/review/:${review_id}`} className="btn btn-primary">
+						<NavLink to={`/reviews/${review_id}`} className="btn btn-primary">
 							READ MORE
 						</NavLink>
 					</div>
