@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import SingleReviewCards from "./SingleReviewCard";
-import axios from "axios";
 import Spinner from "./Spinner";
+import { fetchAllReviews } from "../Utils/fetchData";
 const ReviewCards = () => {
 	const [reviews, setReviews] = useState([]);
 	const [isLoading, SetLoading] = useState(true);
 
 	useEffect(() => {
 		SetLoading(true);
-		axios
-			.get("https://be-nc-games-leks.onrender.com/api/reviews")
-			.then(({ data }) => {
-				setReviews(data.reviews);
-				SetLoading(false);
-			});
+		fetchAllReviews().then((data) => {
+			setReviews(data.reviews);
+			SetLoading(false);
+		});
 	}, []);
 
 	const reviewList = reviews.map((review) => {
