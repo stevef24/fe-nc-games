@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
+import GameReview from "./pages/GameReview";
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/home" element={<Home />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/reviews/:review_id" element={<GameReview />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 		</>

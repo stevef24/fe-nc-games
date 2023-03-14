@@ -6,7 +6,7 @@ const Navbar = () => {
 	const classes = "btn btn-ghost btn-sm";
 
 	return (
-		<nav className="navbar mb-12 shadow-lg">
+		<nav className="mb-12 shadow-lg navbar">
 			<div className="container mx-auto">
 				<div className="flex-none px-2 mx-2">
 					<FaGamepad className="inline pr-2 text-3xl" />
