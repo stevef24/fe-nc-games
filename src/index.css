@@ -25,3 +25,7 @@ code {
 	height: 100vh;
 	flex-direction: column;
 }
+#root {
+	height: 75vh;
+	width: 100%;
+}
