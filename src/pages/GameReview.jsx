@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchReviewById } from "../Utils/fetchData";
+import { fetchReviewById, voteReview } from "../Utils/fetchData";
 
 import { FaComment, FaThumbsUp } from "react-icons/fa";
 import CommentText from "../components/CommentText";
@@ -16,7 +16,11 @@ const GameReview = () => {
 		fetchReviewById(review_id).then((data) => {
 			setReview(data[0]);
 		});
-	}, [review_id]);
+	}, [review_id, review]);
+
+	const vote = () => {
+		voteReview(review_id);
+	};
 
 	return (
 		<>
@@ -43,7 +47,10 @@ const GameReview = () => {
 									<FaComment size={30} className="p-1 mr-1" />
 									{review.comment_count}
 								</div>
-								<div className="p-4 badge hover:bg-primary">
+								<div
+									onClick={() => vote()}
+									className="p-4 badge hover:bg-primary"
+								>
 									<FaThumbsUp size={30} className="p-1 mr-1" />
 									{review.votes}
 								</div>

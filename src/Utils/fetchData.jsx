@@ -22,3 +22,8 @@ export const fetchComments = (reviewId) => {
 			return comments;
 		});
 };
+export const voteReview = (reviewId) => {
+	return mainApi
+		.patch(`/reviews/${reviewId}`, { inc_votes: 1 })
+		.then((data) => data);
+};
