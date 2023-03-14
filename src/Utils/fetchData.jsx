@@ -11,7 +11,14 @@ export const fetchAllReviews = () => {
 };
 export const fetchReviewById = (reviewId) => {
 	return mainApi.get(`/reviews/${reviewId}`).then(({ data: { review } }) => {
-		console.log(review);
 		return review;
 	});
+};
+
+export const fetchComments = (reviewId) => {
+	return mainApi
+		.get(`/reviews/${reviewId}/comments`)
+		.then(({ data: { comments } }) => {
+			return comments;
+		});
 };
