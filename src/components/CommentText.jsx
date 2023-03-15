@@ -3,17 +3,18 @@ import { useEffect, useState } from "react";
 import { fetchComments } from "../Utils/fetchData";
 import { FaThumbsUp } from "react-icons/fa";
 import Spinner from "../components/Spinner";
+import { useContext } from "react";
+import { LoadingContext } from "../Utils/Context/LoadingContext";
 
 const CommentText = ({ review }) => {
 	const [comments, setComments] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-
+	const { isLoading, setIsLoading } = useContext(LoadingContext);
 	useEffect(() => {
 		fetchComments(review).then((data) => {
 			setComments(data);
 			setIsLoading(false);
 		});
-	}, [review]);
+	}, [review, comments]);
 
 	return (
 		<main>

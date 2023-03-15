@@ -27,3 +27,9 @@ export const voteReview = (reviewId, num) => {
 		.patch(`/reviews/${reviewId}`, { inc_votes: num })
 		.then((data) => data);
 };
+export const postComment = (reviewId, body, author) => {
+	return mainApi
+		.post(`/reviews/${reviewId}/comments`, { body, author })
+		.then((data) => data)
+		.catch((err) => console.log(err));
+};

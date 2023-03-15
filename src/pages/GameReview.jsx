@@ -85,7 +85,7 @@ const GameReview = () => {
 					</main>
 					<section className="w-full h-full p-2 border lg:w-2/5 border-stone-800">
 						<section className=" h-2/6">
-							<TextArea />
+							<TextArea reviewId={review_id} />
 						</section>
 						<section className="mt-4 overflow-auto overflow-x-hidden h-4/6">
 							<CommentText review={review_id} />
