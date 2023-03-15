@@ -16,13 +16,14 @@ const GameReview = () => {
 	const [review, setReview] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 	const [err, setErr] = useState(null);
+	const [comment, setComment] = useState("");
 
 	useEffect(() => {
 		fetchReviewById(review_id).then((data) => {
 			setReview(data[0]);
 			setIsLoading(false);
 		});
-	}, [review_id, review]);
+	}, [review_id]);
 
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
@@ -85,10 +86,18 @@ const GameReview = () => {
 					</main>
 					<section className="w-full h-full p-2 border lg:w-2/5 border-stone-800">
 						<section className=" h-2/6">
-							<TextArea reviewId={review_id} />
+							<TextArea
+								reviewId={review_id}
+								setComment={setComment}
+								comment={comment}
+							/>
 						</section>
 						<section className="mt-4 overflow-auto overflow-x-hidden h-4/6">
-							<CommentText review={review_id} />
+							<CommentText
+								review={review_id}
+								setComment={setComment}
+								comment={comment}
+							/>
 						</section>
 					</section>
 				</article>

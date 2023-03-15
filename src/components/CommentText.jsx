@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import { useContext } from "react";
 import { LoadingContext } from "../Utils/Context/LoadingContext";
 
-const CommentText = ({ review }) => {
+const CommentText = ({ review, comment }) => {
 	const [comments, setComments] = useState([]);
 	const { isLoading, setIsLoading } = useContext(LoadingContext);
 	useEffect(() => {
@@ -14,7 +14,7 @@ const CommentText = ({ review }) => {
 			setComments(data);
 			setIsLoading(false);
 		});
-	}, [review, comments]);
+	}, [review]);
 
 	return (
 		<main>

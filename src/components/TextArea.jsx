@@ -6,18 +6,23 @@ import { UserContext } from "../Utils/Context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const TextArea = ({ reviewId }) => {
+const TextArea = ({ reviewId, setComment, comment }) => {
 	const { user } = useContext(UserContext);
-	const [comment, setComment] = useState("");
 
 	const notify = () => toast.success("Comment posted");
 	const errorNotify = () =>
-		toast.warn("sorry, there has been a problem, please try again");
+		toast.error("sorry, there has been a problem, please try again");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		postComment(reviewId, comment, user)
-			.then((data) => notify())
+			.then((data) => {
+				if (data === undefined) {
+					errorNotify();
+				} else {
+					notify();
+				}
+			})
 			.catch((err) => errorNotify());
 		setComment("");
 	};
@@ -32,13 +37,13 @@ const TextArea = ({ reviewId }) => {
 			<textarea
 				className="h-40 mb-4 resize-none textarea textarea-primary"
 				placeholder="type here"
-				value={comment}
 				onChange={(e) => {
 					setComment(e.target.value);
 				}}
+				value={comment}
 				rows="10"
 				cols="50"
-				maxlength={200}
+				maxLength={200}
 				required
 			></textarea>
 			<div className="flex justify-center gap-8">
