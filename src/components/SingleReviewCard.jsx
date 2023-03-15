@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaComment, FaThumbsUp } from "react-icons/fa";
+import { FaComment, FaShare } from "react-icons/fa";
 
 const SingleReviewCard = ({ review }) => {
 	const {
@@ -12,6 +12,7 @@ const SingleReviewCard = ({ review }) => {
 		comment_count,
 		review_id,
 	} = review;
+
 	return (
 		<div className="mb-4 shadow-xl hover:border card lg:card-side bg-base-100 lg:h-60 hover:border-primary">
 			<figure className="h-full">
@@ -31,13 +32,12 @@ const SingleReviewCard = ({ review }) => {
 				</p>
 				<div className="flex flex-col card-actions">
 					<div className="flex flex-row items-center justify-center gap-2 mb-2">
-						<div className="badge">
+						<div className="cursor-pointer badge hover:bg-accent">
 							<FaComment size={20} className="p-1 mr-1" />
 							{comment_count}
 						</div>
-						<div className="badge">
-							<FaThumbsUp size={20} className="p-1 mr-1" />
-							{votes}
+						<div className="cursor-pointer badge hover:bg-accent">
+							<FaShare className="mr-2" /> share
 						</div>
 					</div>
 					<div className="justify-end card-actions">
