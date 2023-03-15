@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReviewById } from "../Utils/fetchData";
+import TextArea from "../components/TextArea";
 
 import { FaComment, FaThumbsUp } from "react-icons/fa";
 import CommentText from "../components/CommentText";
@@ -52,9 +53,8 @@ const GameReview = () => {
 					</div>
 				</main>
 				<section className="w-full h-full p-2 border lg:w-2/5 border-stone-800">
-					<section className=" h-1/6">
-						<textarea />
-						will be making changes here later
+					<section className=" h-2/6">
+						<TextArea />
 					</section>
 					<section className="mt-4 overflow-auto overflow-x-hidden h-4/6">
 						<CommentText review={review_id} />
