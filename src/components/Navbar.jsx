@@ -4,7 +4,6 @@ import { FaGamepad } from "react-icons/fa";
 
 const Navbar = () => {
 	const classes = "btn btn-ghost btn-sm";
-
 	return (
 		<nav className="mb-12 shadow-lg navbar">
 			<div className="container mx-auto">
