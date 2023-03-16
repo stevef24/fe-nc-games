@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import SingleReviewCards from "./SingleReviewCard";
 import Spinner from "./Spinner";
 import { fetchAllReviews } from "../Utils/fetchData";
+import { useParams } from "react-router";
 const ReviewCards = () => {
+	const params = useParams();
 	const [reviews, setReviews] = useState([]);
 	const [isLoading, SetLoading] = useState(true);
 

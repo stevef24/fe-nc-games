@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaFilter } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const SearchCategory = () => {
@@ -18,10 +18,25 @@ const SearchCategory = () => {
 			</div>
 			<div>
 				<div className="mt-4 tabs tabs-boxed">
-					<NavLink className="tab">Category</NavLink>
-					<NavLink className="tab tab-active">Date</NavLink>
-					<NavLink className="tab">Name</NavLink>
+					<NavLink to="/home/strategy" className="tab">
+						Strategy
+					</NavLink>
+					<NavLink to="/home/hidden-roles" className="tab tab-active">
+						Hidden-roles
+					</NavLink>
+					<NavLink to="/home/dexterity" className="tab">
+						Dexterity
+					</NavLink>
 				</div>
+				<select className="w-full max-w-xs mt-4 select select-primary">
+					<option disabled selected>
+						Filter by
+					</option>
+					<option>Date (Asc)</option>
+					<option>Date (Desc)</option>
+					<option>Votes</option>
+					<option>Comment count</option>
+				</select>
 			</div>
 		</div>
 	);
