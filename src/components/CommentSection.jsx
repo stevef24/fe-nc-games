@@ -1,22 +1,29 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { fetchComments } from "../Utils/fetchData";
 import { FaThumbsUp } from "react-icons/fa";
-import Spinner from "../components/Spinner";
+import Spinner from "./Spinner";
+import { useState, useEffect } from "react";
+import { fetchComments } from "../Utils/fetchData";
+import { useParams } from "react-router";
+import TextArea from "./TextArea";
 
-const CommentText = ({ review }) => {
-	const [comments, setComments] = useState([]);
+const CommentSection = () => {
+	const { review_id } = useParams();
 	const [isLoading, setIsLoading] = useState(true);
+	const [comments, setComments] = useState([]);
+	console.log(comments);
 
 	useEffect(() => {
-		fetchComments(review).then((data) => {
+		fetchComments(review_id).then((data) => {
 			setComments(data);
 			setIsLoading(false);
 		});
-	}, [review]);
+	}, [review_id]);
 
 	return (
 		<main>
+			<section className="p-4 mb-10 ">
+				<TextArea setComments={setComments} />
+			</section>
 			{Object.keys(comments).includes("msg") ? (
 				<h1 className="text text-normal">No comments available</h1>
 			) : isLoading ? (
@@ -53,4 +60,4 @@ const CommentText = ({ review }) => {
 	);
 };
 
-export default CommentText;
+export default CommentSection;
