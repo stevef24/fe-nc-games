@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import SingleReviewCards from "./SingleReviewCard";
 import Spinner from "./Spinner";
 import { fetchAllReviews } from "../Utils/fetchData";
-
 const ReviewCards = () => {
 	const [reviews, setReviews] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, SetLoading] = useState(true);
 
 	useEffect(() => {
-		setIsLoading(true);
+		SetLoading(true);
 		fetchAllReviews().then((data) => {
 			setReviews(data.reviews);
-			setIsLoading(false);
+			SetLoading(false);
 		});
 	}, []);
 

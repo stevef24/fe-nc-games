@@ -5,14 +5,15 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReviewById, voteReview } from "../Utils/fetchData";
 import Spinner from "../components/Spinner";
+
 import { FaComment, FaThumbsUp } from "react-icons/fa";
-import CommentSection from "../components/CommentSection";
+import CommentText from "../components/CommentText";
 
 const GameReview = () => {
 	const { review_id } = useParams();
-	const [isLoading, setIsLoading] = useState(true);
 	const [isVoted, setIsVoted] = useState(false);
 	const [review, setReview] = useState({});
+	const [isLoading, setIsLoading] = useState(true);
 	const [err, setErr] = useState(null);
 
 	useEffect(() => {
@@ -20,24 +21,16 @@ const GameReview = () => {
 			setReview(data[0]);
 			setIsLoading(false);
 		});
-	}, []);
+	}, [review_id, review]);
 
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
 	const vote = () => {
 		if (!isVoted) {
-			setReview((prevReview) => ({
-				...prevReview,
-				votes: prevReview.votes + 1,
-			}));
 			voteReview(review_id, 1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
 		} else {
-			setReview((prevReview) => ({
-				...prevReview,
-				votes: prevReview.votes - 1,
-			}));
 			voteReview(review_id, -1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
@@ -49,7 +42,7 @@ const GameReview = () => {
 		<>
 			<Navbar />
 			{isLoading ? (
-				<Spinner isLoading={isLoading} />
+				<Spinner />
 			) : (
 				<article className="w-3/4 h-screen mx-auto lg:flex lg:flex-row lg:items-center lg:justify-center flex-cols">
 					<main className="flex items-center w-full h-full ">
@@ -90,8 +83,12 @@ const GameReview = () => {
 						</div>
 					</main>
 					<section className="w-full h-full p-2 border lg:w-2/5 border-stone-800">
-						<section className="h-full mt-4 overflow-auto overflow-x-hidden">
-							<CommentSection review={review_id} />
+						<section className=" h-1/6">
+							<textarea />
+							will be making changes here later
+						</section>
+						<section className="mt-4 overflow-auto overflow-x-hidden h-4/6">
+							<CommentText review={review_id} />
 						</section>
 					</section>
 				</article>
