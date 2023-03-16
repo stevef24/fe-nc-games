@@ -11,7 +11,6 @@ const CommentSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [comments, setComments] = useState([]);
 	console.log(comments);
-
 	useEffect(() => {
 		fetchComments(review_id).then((data) => {
 			setComments(data);

@@ -18,21 +18,18 @@ const TextArea = ({ setComments }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(review_id, newComment, user);
 		postComment(review_id, newComment, user)
 			.then((data) => {
+				console.log(data, "<======= data");
 				if (data === undefined) {
 					errorNotify();
 				} else {
 					notify();
+					setComments((prevComments) => [data.data.comments, ...prevComments]);
 				}
 			})
 			.catch((err) => errorNotify());
 		setNewComment("");
-		setComments((prevComment) => [
-			{ review_id, body: newComment, author: user },
-			...prevComment,
-		]);
 	};
 
 	return (
