@@ -5,8 +5,11 @@ import { useContext } from "react";
 import { UserContext } from "../Utils/Context/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router";
 
-const TextArea = ({ reviewId, setComment, comment }) => {
+const TextArea = ({ setComments }) => {
+	const { review_id } = useParams();
+	const [newComment, setNewComment] = useState("");
 	const { user } = useContext(UserContext);
 
 	const notify = () => toast.success("Comment posted");
@@ -15,7 +18,8 @@ const TextArea = ({ reviewId, setComment, comment }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		postComment(reviewId, comment, user)
+		console.log(review_id, newComment, user);
+		postComment(review_id, newComment, user)
 			.then((data) => {
 				if (data === undefined) {
 					errorNotify();
@@ -24,7 +28,11 @@ const TextArea = ({ reviewId, setComment, comment }) => {
 				}
 			})
 			.catch((err) => errorNotify());
-		setComment("");
+		setNewComment("");
+		setComments((prevComment) => [
+			{ review_id, body: newComment, author: user },
+			...prevComment,
+		]);
 	};
 
 	return (
@@ -38,9 +46,9 @@ const TextArea = ({ reviewId, setComment, comment }) => {
 				className="h-40 mb-4 resize-none textarea textarea-primary"
 				placeholder="type here"
 				onChange={(e) => {
-					setComment(e.target.value);
+					setNewComment(e.target.value);
 				}}
-				value={comment}
+				value={newComment}
 				rows="10"
 				cols="50"
 				maxLength={200}

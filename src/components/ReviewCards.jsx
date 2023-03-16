@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import SingleReviewCards from "./SingleReviewCard";
 import Spinner from "./Spinner";
 import { fetchAllReviews } from "../Utils/fetchData";
-import { useContext } from "react";
-import { LoadingContext } from "../Utils/Context/LoadingContext";
 
 const ReviewCards = () => {
 	const [reviews, setReviews] = useState([]);
-	const { isLoading, setIsLoading } = useContext(LoadingContext);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setIsLoading(true);
