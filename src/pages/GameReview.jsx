@@ -18,6 +18,7 @@ const GameReview = () => {
 
 	useEffect(() => {
 		fetchReviewById(review_id).then((data) => {
+			console.log(data[0]);
 			setReview(data[0]);
 			setIsLoading(false);
 		});
@@ -26,14 +27,23 @@ const GameReview = () => {
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
 	const vote = () => {
+		console.log("voted");
 		if (!isVoted) {
 			voteReview(review_id, 1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
+			setReview((prevState) => ({
+				...prevState,
+				votes: prevState.votes + 1,
+			}));
 		} else {
 			voteReview(review_id, -1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
+			setReview((prevState) => ({
+				...prevState,
+				votes: prevState.votes - 1,
+			}));
 		}
 		setIsVoted((prevState) => !prevState);
 	};
