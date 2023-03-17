@@ -1,20 +1,28 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { fetchComments } from "../Utils/fetchData";
-import { FaThumbsUp } from "react-icons/fa";
+import { useEffect, useState, useContext } from "react";
+import { deleteComment, fetchComments } from "../Utils/fetchData";
+import { FaThumbsUp, FaTrash } from "react-icons/fa";
 import Spinner from "../components/Spinner";
 import TextArea from "./TextArea";
+import { UserContext } from "../Utils/Context/UserContext";
+
 const CommentText = ({ review }) => {
+	const { isLoggedIn, User } = useContext(UserContext);
 	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-
+	const [counter, setCounter] = useState(0);
 	useEffect(() => {
 		fetchComments(review).then((data) => {
 			setComments(data);
 			setIsLoading(false);
 		});
-	}, [review]);
+	}, [review, counter]);
 
+	const deleteAndUpdate = (commentId) => {
+		deleteComment(commentId).then(() => {
+			setCounter((prevState) => prevState + 1);
+		});
+	};
 	return (
 		<main>
 			<section className="mb-12 ">
@@ -47,6 +55,15 @@ const CommentText = ({ review }) => {
 								<div className="badge">
 									<a className="no-underline link link-accent">Reply</a>
 								</div>
+								{isLoggedIn && comment.author === "grumpy19" && (
+									<div
+										onClick={() => {
+											deleteAndUpdate(comment.comment_id);
+										}}
+									>
+										<FaTrash className="ml-2 text-red-500 opacity-50 hover:cursor-pointer " />
+									</div>
+								)}
 							</div>
 						</section>
 					</section>
