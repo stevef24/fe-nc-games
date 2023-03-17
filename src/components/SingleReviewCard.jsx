@@ -7,7 +7,6 @@ const SingleReviewCard = ({ review }) => {
 		title,
 		category,
 		review_img_url,
-		votes,
 		designer,
 		comment_count,
 		review_id,
