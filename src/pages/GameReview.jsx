@@ -18,22 +18,32 @@ const GameReview = () => {
 
 	useEffect(() => {
 		fetchReviewById(review_id).then((data) => {
+			console.log(data[0]);
 			setReview(data[0]);
 			setIsLoading(false);
 		});
-	}, [review_id, review]);
+	}, [review_id]);
 
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
 	const vote = () => {
+		console.log("voted");
 		if (!isVoted) {
 			voteReview(review_id, 1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
+			setReview((prevState) => ({
+				...prevState,
+				votes: prevState.votes + 1,
+			}));
 		} else {
 			voteReview(review_id, -1).catch((err) => {
 				setErr("Something went wrong, please try again.");
 			});
+			setReview((prevState) => ({
+				...prevState,
+				votes: prevState.votes - 1,
+			}));
 		}
 		setIsVoted((prevState) => !prevState);
 	};
@@ -83,11 +93,7 @@ const GameReview = () => {
 						</div>
 					</main>
 					<section className="w-full h-full p-2 border lg:w-2/5 border-stone-800">
-						<section className=" h-1/6">
-							<textarea />
-							will be making changes here later
-						</section>
-						<section className="mt-4 overflow-auto overflow-x-hidden h-4/6">
+						<section className="h-full mt-4 overflow-auto overflow-x-hidden">
 							<CommentText review={review_id} />
 						</section>
 					</section>

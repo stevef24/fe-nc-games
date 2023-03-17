@@ -2,8 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ReviewCards from "../components/ReviewCards";
-
-const Home = () => {
+const CategoriesPage = () => {
 	return (
 		<>
 			<Navbar />
@@ -13,4 +12,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default CategoriesPage;
