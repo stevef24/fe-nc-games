@@ -18,7 +18,6 @@ const GameReview = () => {
 
 	useEffect(() => {
 		fetchReviewById(review_id).then((data) => {
-			console.log(data[0]);
 			setReview(data[0]);
 			setIsLoading(false);
 		});

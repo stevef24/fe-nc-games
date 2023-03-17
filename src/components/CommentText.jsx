@@ -53,9 +53,9 @@ const CommentText = ({ review }) => {
 									{comment.votes}
 								</div>
 								<div className="badge">
-									<a href="#" className="no-underline link link-accent">
+									<p href="#" className="no-underline link link-accent">
 										Reply
-									</a>
+									</p>
 								</div>
 								{isLoggedIn && comment.author === "grumpy19" && (
 									<div
