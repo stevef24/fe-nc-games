@@ -7,7 +7,7 @@ import TextArea from "./TextArea";
 import { UserContext } from "../Utils/Context/UserContext";
 
 const CommentText = ({ review }) => {
-	const { isLoggedIn, User } = useContext(UserContext);
+	const { isLoggedIn } = useContext(UserContext);
 	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [counter, setCounter] = useState(0);
@@ -53,7 +53,9 @@ const CommentText = ({ review }) => {
 									{comment.votes}
 								</div>
 								<div className="badge">
-									<a className="no-underline link link-accent">Reply</a>
+									<a href="#" className="no-underline link link-accent">
+										Reply
+									</a>
 								</div>
 								{isLoggedIn && comment.author === "grumpy19" && (
 									<div
