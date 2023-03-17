@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchComments } from "../Utils/fetchData";
 import { FaThumbsUp } from "react-icons/fa";
 import Spinner from "../components/Spinner";
-
+import TextArea from "./TextArea";
 const CommentText = ({ review }) => {
 	const [comments, setComments] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +17,9 @@ const CommentText = ({ review }) => {
 
 	return (
 		<main>
+			<section className="mb-12 ">
+				<TextArea setComments={setComments} />
+			</section>
 			{Object.keys(comments).includes("msg") ? (
 				<h1 className="text text-normal">No comments available</h1>
 			) : isLoading ? (
@@ -24,7 +27,7 @@ const CommentText = ({ review }) => {
 			) : (
 				comments.map((comment) => (
 					<section
-						className="container flex w-full px-2 py-3 mb-4 border rounded-lg border-stone-800 h-1/6"
+						className="container flex w-full px-2 py-3 mb-4 border rounded-lg border-stone-800 h-/6"
 						key={comment.comment_id}
 					>
 						<div className="avatar placeholder">
