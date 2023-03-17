@@ -11,7 +11,7 @@ const SearchCategory = ({ setSearchParams }) => {
 					placeholder="search"
 					className="w-full max-w-xs gap-4 input input-bordered"
 				/>
-				<button className="ml-2 f btn btn-primary">
+				<button className="ml-2 f btn btn-outline btn-primary">
 					<FaSearch className="inline mr-2" />
 					Search
 				</button>
@@ -21,7 +21,7 @@ const SearchCategory = ({ setSearchParams }) => {
 					<NavLink
 						to="/home/strategy"
 						className={({ isActive }) =>
-							isActive ? "tab-active rounded-xl p-1 " : "tab"
+							isActive ? "tab-active rounded-full p-1 px-2" : "tab"
 						}
 					>
 						Strategy
@@ -29,7 +29,7 @@ const SearchCategory = ({ setSearchParams }) => {
 					<NavLink
 						to="/home/hidden-roles"
 						className={({ isActive }) =>
-							isActive ? "tab-active rounded-xl p-1 " : "tab"
+							isActive ? "tab-active rounded-full p-1 px-2" : "tab"
 						}
 					>
 						Hidden-roles
@@ -37,7 +37,7 @@ const SearchCategory = ({ setSearchParams }) => {
 					<NavLink
 						to="/home/dexterity"
 						className={({ isActive }) =>
-							isActive ? "tab-active rounded-xl p-1 " : "tab"
+							isActive ? "tab-active rounded-full p-1 px-2" : "tab"
 						}
 					>
 						Dexterity
