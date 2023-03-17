@@ -20,6 +20,7 @@ const TextArea = ({ setComments }) => {
 		e.preventDefault();
 		postComment(review_id, newComment, user)
 			.then((data) => {
+				console.log(data, "<======= data");
 				if (data === undefined) {
 					errorNotify();
 				} else {

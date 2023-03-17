@@ -21,7 +21,7 @@ const GameReview = () => {
 			setReview(data[0]);
 			setIsLoading(false);
 		});
-	}, [review_id, review]);
+	}, [review_id]);
 
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
