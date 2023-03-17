@@ -39,7 +39,7 @@ const TextArea = ({ setComments }) => {
 			method="post"
 		>
 			<textarea
-				className="h-40 mb-4 resize-none textarea textarea-primary"
+				className="h-40 m-4 resize-none textarea textarea-primary"
 				placeholder="type here"
 				onChange={(e) => {
 					setNewComment(e.target.value);
