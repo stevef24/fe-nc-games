@@ -55,6 +55,8 @@ const SearchCategory = ({ setSearchParams }) => {
 					<option value="order=desc">Order (Desc)</option>
 					<option value="sort_by=votes">Votes</option>
 					<option value="sort_by=designer">Designer</option>
+					<option value="sort_by=comment_count">Comment count</option>
+					<option value="sort_by=created_at">Date</option>
 				</select>
 			</div>
 		</div>
