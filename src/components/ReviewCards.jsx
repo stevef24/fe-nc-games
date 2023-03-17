@@ -2,24 +2,30 @@ import React, { useEffect, useState } from "react";
 import SingleReviewCards from "./SingleReviewCard";
 import Spinner from "./Spinner";
 import { fetchAllReviews } from "../Utils/fetchData";
+import SearchCategory from "../components/SearchCategory";
+import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const ReviewCards = () => {
+	const { category } = useParams();
 	const [reviews, setReviews] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, SetLoading] = useState(true);
+	const [searchParams, setSearchParams] = useSearchParams("Votes=asc");
 
 	useEffect(() => {
-		setIsLoading(true);
-		fetchAllReviews().then((data) => {
+		SetLoading(true);
+		fetchAllReviews(category, searchParams).then((data) => {
 			setReviews(data.reviews);
-			setIsLoading(false);
+			SetLoading(false);
 		});
-	}, []);
+	}, [category, searchParams]);
 
 	const reviewList = reviews.map((review) => {
 		return <SingleReviewCards key={review.review_id} review={review} />;
 	});
 	return (
 		<>
+			<SearchCategory setSearchParams={setSearchParams} />
 			{isLoading ? (
 				<Spinner isLoading={isLoading} />
 			) : (
