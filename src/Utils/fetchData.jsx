@@ -5,7 +5,6 @@ const mainApi = axios.create({
 });
 
 export const fetchAllReviews = (category, searchParams) => {
-	// const params = new URLSearchParams(searchParams);
 	const sort_by = searchParams.get("sort_by");
 	const order = searchParams.get("order");
 
@@ -38,6 +37,12 @@ export const voteReview = (reviewId, num) => {
 	return mainApi
 		.patch(`/reviews/${reviewId}`, { inc_votes: num })
 		.then((data) => data);
+};
+
+export const deleteComment = (commentId) => {
+	return mainApi
+		.delete(`/comments/${commentId}`)
+		.then((data) => console.log(data));
 };
 
 export const postComment = (reviewId, body, author) => {

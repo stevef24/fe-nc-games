@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FaGamepad } from "react-icons/fa";
+import { UserContext } from "../Utils/Context/UserContext";
 
 const Navbar = () => {
+	const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 	const classes = "btn btn-ghost btn-sm";
 	return (
 		<nav className="mb-12 shadow-lg navbar">
@@ -14,7 +16,7 @@ const Navbar = () => {
 					</NavLink>
 				</div>
 				<div className="flex-1 px-2 mx-2">
-					<div className="flex justify-end">
+					<div className="flex items-center justify-end">
 						<NavLink
 							to="/home"
 							className={({ isActive }) =>
@@ -31,6 +33,14 @@ const Navbar = () => {
 						>
 							About
 						</NavLink>
+						<button
+							className={
+								isLoggedIn ? "btn btn-error py-1" : "btn btn-primary py-1"
+							}
+							onClick={() => setIsLoggedIn((prevState) => !prevState)}
+						>
+							{isLoggedIn ? "Log out" : "Log in"}
+						</button>
 					</div>
 				</div>
 			</div>
