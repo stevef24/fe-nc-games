@@ -1,14 +1,12 @@
 import React from "react";
-import { useParams } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ReviewCards from "../components/ReviewCards";
 const CategoriesPage = () => {
-	const params = useParams();
-
 	return (
 		<>
 			<Navbar />
-
+			<ReviewCards />
 			<Footer />
 		</>
 	);

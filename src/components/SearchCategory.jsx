@@ -1,8 +1,8 @@
 import React from "react";
-import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-const SearchCategory = () => {
+const SearchCategory = ({ setSearchParams }) => {
 	return (
 		<div className="container flex flex-col items-center justify-center w-full mx-auto md:flex-col">
 			<div className="flex flex-row justify-center w-2/3">
@@ -18,24 +18,43 @@ const SearchCategory = () => {
 			</div>
 			<div>
 				<div className="mt-4 tabs tabs-boxed">
-					<NavLink to="/home/strategy" className="tab">
+					<NavLink
+						to="/home/strategy"
+						className={({ isActive }) =>
+							isActive ? "tab-active rounded-xl p-1 " : "tab"
+						}
+					>
 						Strategy
 					</NavLink>
-					<NavLink to="/home/hidden-roles" className="tab tab-active">
+					<NavLink
+						to="/home/hidden-roles"
+						className={({ isActive }) =>
+							isActive ? "tab-active rounded-xl p-1 " : "tab"
+						}
+					>
 						Hidden-roles
 					</NavLink>
-					<NavLink to="/home/dexterity" className="tab">
+					<NavLink
+						to="/home/dexterity"
+						className={({ isActive }) =>
+							isActive ? "tab-active rounded-xl p-1 " : "tab"
+						}
+					>
 						Dexterity
 					</NavLink>
 				</div>
-				<select className="w-full max-w-xs mt-4 select select-primary">
-					<option disabled selected>
-						Filter by
-					</option>
-					<option>Date (Asc)</option>
-					<option>Date (Desc)</option>
-					<option>Votes</option>
-					<option>Comment count</option>
+				<select
+					className="w-full max-w-xs mt-4 select select-primary"
+					onChange={(e) => {
+						let selectedOption = e.target.value;
+						setSearchParams(selectedOption);
+					}}
+				>
+					<option disabled>Filter by</option>
+					<option value="order=asc">Order (Asc)</option>
+					<option value="order=desc">Order (Desc)</option>
+					<option value="sort_by=votes">Votes</option>
+					<option value="sort_by=designer">Designer</option>
 				</select>
 			</div>
 		</div>

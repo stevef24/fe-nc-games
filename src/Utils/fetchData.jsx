@@ -4,8 +4,13 @@ const mainApi = axios.create({
 	baseURL: "https://be-nc-games-leks.onrender.com/api",
 });
 
-export const fetchAllReviews = (sort_by) => {
-	return mainApi.get("/reviews").then(({ data: reviews }) => {
+export const fetchAllReviews = (category, searchParams) => {
+	const params = new URLSearchParams(searchParams);
+	let url = "/reviews?";
+	if (category) {
+		url += `category=${category}&`;
+	}
+	return mainApi.get(`${url}${params}`).then(({ data: reviews }) => {
 		return reviews;
 	});
 };
