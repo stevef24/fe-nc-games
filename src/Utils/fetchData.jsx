@@ -5,14 +5,21 @@ const mainApi = axios.create({
 });
 
 export const fetchAllReviews = (category, searchParams) => {
-	const params = new URLSearchParams(searchParams);
-	let url = "/reviews?";
-	if (category) {
-		url += `category=${category}&`;
-	}
-	return mainApi.get(`${url}${params}`).then(({ data: reviews }) => {
-		return reviews;
-	});
+	// const params = new URLSearchParams(searchParams);
+	const sort_by = searchParams.get("sort_by");
+	const order = searchParams.get("order");
+
+	return mainApi
+		.get(`/reviews`, {
+			params: {
+				category,
+				sort_by,
+				order,
+			},
+		})
+		.then(({ data: reviews }) => {
+			return reviews;
+		});
 };
 export const fetchReviewById = (reviewId) => {
 	return mainApi.get(`/reviews/${reviewId}`).then(({ data: { review } }) => {
