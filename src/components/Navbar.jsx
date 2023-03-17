@@ -14,7 +14,7 @@ const Navbar = () => {
 					</NavLink>
 				</div>
 				<div className="flex-1 px-2 mx-2">
-					<div className="flex justify-end">
+					<div className="flex items-center justify-end">
 						<NavLink
 							to="/home"
 							className={({ isActive }) =>
