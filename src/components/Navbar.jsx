@@ -10,13 +10,13 @@ const Navbar = () => {
 		<nav className="mb-12 shadow-lg navbar">
 			<div className="container mx-auto">
 				<div className="flex-none px-2 mx-2">
-					<FaGamepad className="inline pr-2 text-3xl" />
-					<NavLink to="/" className="text-lg font-bold align-middle">
+					<FaGamepad size={45} className="inline pr-2 text-green-600" />
+					<NavLink to="/" className="text-3xl font-bold align-middle logo">
 						NC-games
 					</NavLink>
 				</div>
 				<div className="flex-1 px-2 mx-2">
-					<div className="flex items-center justify-end">
+					<div className="flex items-center justify-center">
 						<NavLink
 							to="/home"
 							className={({ isActive }) =>
@@ -33,16 +33,14 @@ const Navbar = () => {
 						>
 							About
 						</NavLink>
-						<button
-							className={
-								isLoggedIn ? "btn btn-error py-1" : "btn btn-primary py-1"
-							}
-							onClick={() => setIsLoggedIn((prevState) => !prevState)}
-						>
-							{isLoggedIn ? "Log out" : "Log in"}
-						</button>
 					</div>
 				</div>
+				<button
+					className={isLoggedIn ? "btn btn-error py-1" : "btn btn-primary py-1"}
+					onClick={() => setIsLoggedIn((prevState) => !prevState)}
+				>
+					{isLoggedIn ? "Log out" : "Log in"}
+				</button>
 			</div>
 		</nav>
 	);

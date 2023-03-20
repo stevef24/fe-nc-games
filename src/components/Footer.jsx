@@ -1,13 +1,13 @@
-import { FaGamepad } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 const Footer = () => {
 	const footerYear = new Date().getFullYear();
 	return (
-		<footer className="p-5 footer bg-neutral-900">
-			<div>
-				<FaGamepad size={50} />
-				<p>
-					Copyright &copy; Stav {footerYear} more items will be added shortly
-				</p>
+		<footer className="h-32 p-5 bg-stone-900 footer">
+			<div className="flex items-center justify-center gap-4">
+				<a href="https://github.com/stevef24" target="_blank" rel="noreferrer">
+					<FaGithub size={50} />
+				</a>
+				<p>Copyright &copy; Stav {footerYear}</p>
 			</div>
 		</footer>
 	);

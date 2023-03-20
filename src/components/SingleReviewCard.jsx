@@ -1,52 +1,60 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaComment, FaShare } from "react-icons/fa";
+import { FaComment, FaShare, FaHeart } from "react-icons/fa";
+import Tilt from "react-parallax-tilt";
 
 const SingleReviewCard = ({ review }) => {
-	const {
-		title,
-		category,
-		review_img_url,
-		designer,
-		comment_count,
-		review_id,
-	} = review;
+	const { title, category, review_img_url, designer, review_id } = review;
 
 	return (
-		<div className="mb-4 shadow-xl hover:border card lg:card-side bg-base-100 lg:h-60 hover:border-primary">
-			<figure className="h-full">
-				<img
-					src={review_img_url}
-					alt="review"
-					className="lg:h-full lg:w-60 object-fit"
-				/>
-			</figure>
-			<div className="justify-around card-body">
-				<h2 className="mb-1 h-1/3 card-title">{title}</h2>
-				<p className="font-normal text text-primary">
-					{designer}
-					<span className="ml-4 badge badge-outline badge-accent">
-						{category}
-					</span>
-				</p>
-				<div className="flex flex-col card-actions">
-					<div className="flex flex-row items-center justify-center gap-2 mb-2">
-						<div className="cursor-pointer badge hover:bg-accent">
-							<FaComment size={20} className="p-1 mr-1" />
-							{comment_count}
+		<Tilt>
+			<div className="my-4 border rounded-lg border-stone-800 h-96 w-72 hover:border-primary ">
+				<figure className="h-1/2">
+					<img
+						src={review_img_url}
+						alt={title}
+						className="h-full rounded-lg "
+					/>
+				</figure>
+				<div className="flex items-center justify-center h-20">
+					<h1 className="p-1 text-lg font-bold text-center text-green-400">
+						{title}
+					</h1>
+				</div>
+				<div className="flex items-center justify-center h-10 gap-2 ">
+					<div className="badge badge-outline border-stone-700">{`#${category}`}</div>
+					<div className="badge badge-outline border-stone-700">{`#${designer}`}</div>
+				</div>
+				<div className="flex items-center justify-between h-16 gap-4 p-2 ">
+					<div className="flex items-end justify-end gap-4 p-4">
+						<div className="flex ">
+							<FaComment
+								size={20}
+								className="text-stone-600 hover:text-primary"
+							/>
 						</div>
-						<div className="cursor-pointer badge hover:bg-accent">
-							<FaShare className="mr-2" /> share
+						<div>
+							<FaShare
+								size={20}
+								className="text-stone-600 hover:text-primary"
+							/>
+						</div>
+						<div>
+							<FaHeart
+								size={20}
+								className="text-stone-600 hover:text-primary"
+							/>
 						</div>
 					</div>
-					<div className="justify-end card-actions">
-						<NavLink to={`/reviews/${review_id}`} className="btn btn-outline ">
-							READ MORE
-						</NavLink>
-					</div>
+					<NavLink
+						to={`/reviews/${review_id}`}
+						className="w-1/3 mr-2 btn btn-primary"
+					>
+						Read
+					</NavLink>
 				</div>
 			</div>
-		</div>
+		</Tilt>
 	);
 };
 

@@ -29,7 +29,7 @@ const ReviewCards = () => {
 			{isLoading ? (
 				<Spinner isLoading={isLoading} />
 			) : (
-				<div className="grid w-9/12 min-h-screen grid-cols-1 gap-4 p-8 mx-auto lg:grid-cols-2 md:grid-cols-1">
+				<div className="grid w-10/12 min-h-full grid-cols-1 gap-4 mx-auto mt-4 xl:grid-cols-4 place-items-start lg:grid-cols-3 md:grid-cols-2 sm:place-items-center">
 					{reviewList}
 				</div>
 			)}

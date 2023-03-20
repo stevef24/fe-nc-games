@@ -7,8 +7,8 @@ const LandingPage = () => {
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center w-4/6 h-full mx-auto mt-12 text-center">
-				<h1 className="mb-12 font-bold text-7xl text-primary">NC-Games</h1>
-				<p className="mb-12 text-3xl font-bold">
+				<h1 className="mb-12 font-bold text-7xl text-primary logo">NC-Games</h1>
+				<p className="mb-12 text-3xl font">
 					Level up your gaming experience with our comprehensive reviews and
 					insightful analysis. From the latest AAA titles to indie gems, our
 					website has everything you need to make informed decisions before

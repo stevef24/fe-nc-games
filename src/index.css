@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@600;700&display=swap");
 
 body {
 	margin: 0;
@@ -28,4 +29,8 @@ code {
 #root {
 	height: 75vh;
 	width: 100%;
+}
+
+.logo {
+	font-family: "Inconsolata", monospace;
 }
