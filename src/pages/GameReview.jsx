@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchReviewById, voteReview } from "../Utils/fetchData";
 import Spinner from "../components/Spinner";
 
@@ -15,18 +15,24 @@ const GameReview = () => {
 	const [review, setReview] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 	const [err, setErr] = useState(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetchReviewById(review_id).then((data) => {
-			setReview(data[0]);
-			setIsLoading(false);
-		});
+		fetchReviewById(review_id)
+			.then((data) => {
+				setReview(data[0]);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				if (err.response.status === 404) {
+					navigate("/*");
+				}
+			});
 	}, [review_id]);
 
 	let styles = "p-4 cursor-pointer badge hover:bg-primary";
 
 	const vote = () => {
-		console.log("voted");
 		if (!isVoted) {
 			voteReview(review_id, 1).catch((err) => {
 				setErr("Something went wrong, please try again.");

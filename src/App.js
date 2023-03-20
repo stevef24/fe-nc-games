@@ -6,6 +6,8 @@ import ErrorPage from "./pages/ErrorPage";
 import GameReview from "./pages/GameReview";
 import CategoriesPage from "./pages/CategoriesPage";
 import { UserProvider } from "./Utils/Context/UserContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
@@ -19,6 +21,18 @@ function App() {
 					<Route path="/home/:category" element={<CategoriesPage />} />
 					<Route path="/*" element={<ErrorPage />} />
 				</Routes>
+				<ToastContainer
+					position="top-right"
+					autoClose={2000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="dark"
+				/>
 			</UserProvider>
 		</>
 	);

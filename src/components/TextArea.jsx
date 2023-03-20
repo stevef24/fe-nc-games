@@ -3,8 +3,7 @@ import { FaPaperPlane, FaPaperclip, FaSmile, FaImage } from "react-icons/fa";
 import { postComment } from "../Utils/fetchData";
 import { useContext } from "react";
 import { UserContext } from "../Utils/Context/UserContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useParams } from "react-router";
 
 const TextArea = ({ setComments }) => {
@@ -59,18 +58,6 @@ const TextArea = ({ setComments }) => {
 				<button type="submit" className="w-1/3 btn btn-outline btn-primary">
 					Send <FaPaperPlane className="ml-2" />
 				</button>
-				<ToastContainer
-					position="top-right"
-					autoClose={2000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-					theme="dark"
-				/>
 			</div>
 		</form>
 	);

@@ -4,20 +4,28 @@ import Spinner from "./Spinner";
 import { fetchAllReviews } from "../Utils/fetchData";
 import SearchCategory from "../components/SearchCategory";
 import { useParams } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ReviewCards = () => {
 	const { category } = useParams();
 	const [reviews, setReviews] = useState([]);
 	const [isLoading, SetLoading] = useState(true);
 	const [searchParams, setSearchParams] = useSearchParams("Votes=asc");
-
+	const navigate = useNavigate();
 	useEffect(() => {
 		SetLoading(true);
-		fetchAllReviews(category, searchParams).then((data) => {
-			setReviews(data.reviews);
-			SetLoading(false);
-		});
+		fetchAllReviews(category, searchParams)
+			.then((data) => {
+				setReviews(data.reviews);
+				SetLoading(false);
+			})
+			.catch((err) => {
+				navigate("/home");
+				if (err.response.status === 404 || err.response.status === 400) {
+					toast.error("sorry! Category does not exist redirected to home!");
+				}
+			});
 	}, [category, searchParams]);
 
 	const reviewList = reviews.map((review) => {
